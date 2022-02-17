@@ -1,17 +1,19 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:today/database/Database.dart';
+//import 'package:today/database/Database.dart';
 import 'package:today/widgets/tasks_list.dart';
 import 'Tasks/Add_Tasks.dart';
-import 'package:today/widgets/tasks_list.dart';
+
+//import 'package:today/widgets/tasks_list.dart';
 class TasksScreen extends StatefulWidget {
   @override
   _TasksScreenState createState() => _TasksScreenState();
 }
+
 class _TasksScreenState extends State<TasksScreen> {
   @override
   Widget build(BuildContext context) {
-    return  Scaffold(
+    return Scaffold(
         backgroundColor: Colors.lightBlueAccent,
         floatingActionButton: FloatingActionButton(
           backgroundColor: Colors.lightBlueAccent,
@@ -27,8 +29,8 @@ class _TasksScreenState extends State<TasksScreen> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Container(
-              padding: EdgeInsets.only(
-                  top: 60, bottom: 30, right: 30, left: 30),
+              padding:
+                  EdgeInsets.only(top: 60, bottom: 30, right: 30, left: 30),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -36,14 +38,19 @@ class _TasksScreenState extends State<TasksScreen> {
                     radius: 30,
                     backgroundColor: Colors.white,
                     child: Icon(
-                      Icons.list, color: Colors.lightBlueAccent, size: 30,),
+                      Icons.list,
+                      color: Colors.lightBlueAccent,
+                      size: 30,
+                    ),
                   ),
                   SizedBox(
                     height: 15,
                   ),
-                  Text('Today ', style: TextStyle(fontSize: 40,
-                      fontWeight: FontWeight.w700,
-                      color: Colors.white)),
+                  Text('Today ',
+                      style: TextStyle(
+                          fontSize: 40,
+                          fontWeight: FontWeight.w700,
+                          color: Colors.white)),
                 ],
               ),
             ),
@@ -59,14 +66,10 @@ class _TasksScreenState extends State<TasksScreen> {
                       topRight: Radius.circular(20),
                       topLeft: Radius.circular(20)),
                 ),
-                child:TaskList(),
+                child: TaskList(),
               ),
             ),
           ],
-        )
-    );
+        ));
   }
 }
-
-
-

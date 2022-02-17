@@ -3,11 +3,12 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:today/database/Database.dart';
 import 'package:intl/intl.dart';
-import 'package:today/widgets/tasks_list.dart';
+//import 'package:today/widgets/tasks_list.dart';
 
 import '../tasks_screen.dart';
+
 // ignore: must_be_immutable
-class AddTasksScreen extends StatefulWidget{
+class AddTasksScreen extends StatefulWidget {
   @override
   _AddTasksScreenState createState() => _AddTasksScreenState();
 }
@@ -29,18 +30,19 @@ class _AddTasksScreenState extends State<AddTasksScreen> {
           decoration: BoxDecoration(
             color: Colors.white,
             borderRadius: BorderRadius.only(
-              topRight: Radius.circular(20), topLeft: Radius.circular(20),
+              topRight: Radius.circular(20),
+              topLeft: Radius.circular(20),
             ),
           ),
           child: Column(
             children: [
-              Text('Add Task',
+              Text(
+                'Add Task',
                 textAlign: TextAlign.center,
                 style: TextStyle(
                     fontSize: 30,
                     color: Colors.lightBlueAccent,
-                    fontWeight: FontWeight.w700
-                ),
+                    fontWeight: FontWeight.w700),
               ),
               SizedBox(
                 height: 10,
@@ -59,10 +61,8 @@ class _AddTasksScreenState extends State<AddTasksScreen> {
                 decoration: InputDecoration(
                   prefixIcon: Icon(Icons.title),
                   border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(15)
-                  ),
+                      borderRadius: BorderRadius.circular(15)),
                 ),
-
               ),
               SizedBox(
                 height: 15,
@@ -79,12 +79,12 @@ class _AddTasksScreenState extends State<AddTasksScreen> {
                 decoration: InputDecoration(
                   prefixIcon: Icon(Icons.access_time),
                   border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(15)
-                  ),
+                      borderRadius: BorderRadius.circular(15)),
                 ),
                 keyboardType: TextInputType.datetime,
                 onTap: () {
-                  showTimePicker(context: context,
+                  showTimePicker(
+                    context: context,
                     initialTime: TimeOfDay.now(),
                   ).then((value) {
                     timeController.text = value.format(context).toString();
@@ -106,15 +106,15 @@ class _AddTasksScreenState extends State<AddTasksScreen> {
                 decoration: InputDecoration(
                   prefixIcon: Icon(Icons.calendar_today),
                   border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(15)
-                  ),
+                      borderRadius: BorderRadius.circular(15)),
                 ),
                 keyboardType: TextInputType.datetime,
                 onTap: () {
-                  showDatePicker(context: context,
+                  showDatePicker(
+                    context: context,
                     initialDate: DateTime.now(),
                     firstDate: DateTime.now(),
-                    lastDate: DateTime.parse('2022-01-01'),
+                    lastDate: DateTime.parse('2022-12-01'),
                   ).then((value) {
                     dateController.text = DateFormat.yMd().format(value);
                   });
@@ -130,25 +130,28 @@ class _AddTasksScreenState extends State<AddTasksScreen> {
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(50)),
                 color: Colors.lightBlueAccent,
-                child: Text(' Add ',
-                  style: TextStyle(fontSize: 20, color: Colors.white),),
+                child: Text(
+                  ' Add ',
+                  style: TextStyle(fontSize: 20, color: Colors.white),
+                ),
                 onPressed: () {
                   if (formKey.currentState.validate() == true) {
-                    final database = Provider.of<AppDatabase>(
-                        context, listen: false);
+                    final database =
+                        Provider.of<AppDatabase>(context, listen: false);
                     final task = Task(
-                        title: titleController.text,
-                        date: dateController.text,
-                        time: timeController.text,
+                      title: titleController.text,
+                      date: dateController.text,
+                      time: timeController.text,
                     );
                     //date:DateTime.parse(dateController.text).toLocal());
-                    setState((){
-                       database.insertTask(task);
+                    setState(() {
+                      database.insertTask(task);
                     });
-                    Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => TasksScreen()),);
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => TasksScreen()),
+                    );
                   }
-
                 },
               ),
             ],
